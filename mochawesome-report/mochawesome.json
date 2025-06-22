@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-22T11:33:46.452Z",
+    "end": "2025-06-22T11:33:48.216Z",
+    "duration": 1764,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b0de76fc-e795-4b8d-9c08-d047268c7bf6",
+      "title": "",
+      "fullFile": "C:\\Users\\mbsim\\Desktop\\ApiAutomation\\APIAutomation\\apitesting\\api.test.js",
+      "file": "\\APIAutomation\\apitesting\\api.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4e3d586e-74da-455c-a7c2-d5c46a65a1b6",
+          "title": "API Test Suite",
+          "fullFile": "C:\\Users\\mbsim\\Desktop\\ApiAutomation\\APIAutomation\\apitesting\\api.test.js",
+          "file": "\\APIAutomation\\apitesting\\api.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET Single User",
+              "fullTitle": "API Test Suite GET Single User",
+              "timedOut": false,
+              "duration": 342,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\n\nconst responseGet = await fetch(`${baseURL}/api/users/2`);\n\nconst endTime = Date.now();\nconst responseTimeGet = endTime - startTime;\nconsole.log(`Response Time: ${responseTimeGet}ms`);\n\nexpect(responseGet.status, \"ada yang salah dari method GET\").to.equal(200)\n\nexpect(responseTimeGet, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n\nconst dataGet = await responseGet.json();\n\nexpect(dataGet.data.id, \"User ID tidak sesuai\").to.equal(2);\n\nconst ajvGet = new Ajv()\n\nconst cekcekGet = ajvGet.compile(schema_getngambildatauser)\nconst hasil_schemaGet = cekcekGet(dataGet)\nexpect(hasil_schemaGet, `schema is not valid from method GET`).to.be.true",
+              "err": {},
+              "uuid": "dfacf04e-7d78-4619-bc1b-0641f1363310",
+              "parentUUID": "4e3d586e-74da-455c-a7c2-d5c46a65a1b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST Create User",
+              "fullTitle": "API Test Suite POST Create User",
+              "timedOut": false,
+              "duration": 463,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\n\nconst newPost = {\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}\nconst responsePost = await fetch(`${baseURL}/api/users`, {\n    method: \"POST\",\n    headers: {\n        \"x-api-key\": \"reqres-free-v1\",\n        \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify(newPost)\n})\n\nconst endTime = Date.now();\nconst responseTimePost = endTime - startTime;\nconsole.log(`Response Time: ${responseTimePost}ms`);\n\n\nexpect(responsePost.status, \"Status code tidak sesuai\").to.be.oneOf([201, 202]);\n\nexpect(responseTimePost, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n\nconst dataPost = await responsePost.json();\n\nexpect(dataPost.job, \"Job tidak sesuai\").to.equal(\"leader\");\n\nconst ajvPost = new Ajv()\n\nconst cekcekPost = ajvPost.compile(schema_postbikinuserbaru)\nconst hasil_schemaPost = cekcekPost(dataPost)\nexpect(hasil_schemaPost, `schema is not valid from method Post`).to.be.true",
+              "err": {},
+              "uuid": "888a727a-af91-4f61-9b24-d32070de605e",
+              "parentUUID": "4e3d586e-74da-455c-a7c2-d5c46a65a1b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PUT Update Info User",
+              "fullTitle": "API Test Suite PUT Update Info User",
+              "timedOut": false,
+              "duration": 466,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\n    \n    const newPut = {\n        \"name\": \"morpheus\",\n        \"job\": \"zion resident\"\n    }\n    const responsePut = await fetch(`${baseURL}/api/users/2`, {\n        method: \"PUT\",\n        headers: {\n            \"x-api-key\": \"reqres-free-v1\",\n            \"Content-Type\": \"application/json\"\n        },\n        body: JSON.stringify(newPut)\n    })\n    \n    const endTime = Date.now();\n    const responseTimePut = endTime - startTime;\n    console.log(`Response Time: ${responseTimePut}ms`);\n    \n    expect(responsePut.status, \"ada yang salah nih dari method Put\").to.equal(200)\n    \n    expect(responseTimePut, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n    \n    const dataPut = await responsePut.json();\n    \n    expect(dataPut.job, \"Job tidak sesuai\").to.equal(\"zion resident\");\n    \n    const ajvPut = new Ajv()\n    \n    const cekcekPut = ajvPut.compile(schema_putupdatedatauser)\n    const hasil_schemaPut = cekcekPut(dataPut)\n    expect(hasil_schemaPut, `schema is not valid from method PUT`).to.be.true",
+              "err": {},
+              "uuid": "703c41a0-16c0-4177-aafb-83c0114f771d",
+              "parentUUID": "4e3d586e-74da-455c-a7c2-d5c46a65a1b6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "DELETE Delete Info User",
+              "fullTitle": "API Test Suite DELETE Delete Info User",
+              "timedOut": false,
+              "duration": 487,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\n\nconst responseDelete = await fetch(`${baseURL}/api/users/2`, {\n    method: \"DELETE\",\n    headers: {\n        \"x-api-key\": \"reqres-free-v1\",\n        \"Content-Type\": \"application/json\"\n    },\n})\n\nconst endTime = Date.now();\nconst responseTimeDelete = endTime - startTime;\nconsole.log(`Response Time: ${responseTimeDelete}ms`);\n\nexpect(responseDelete.status, \"ada yang salah nih dari method DELETE\").to.equal(204)\n\nexpect(responseTimeDelete, \"Response time lebih dari 500ms\").to.be.lessThan(500);",
+              "err": {},
+              "uuid": "3cf90e20-7734-49f7-bcf8-c0208bde975c",
+              "parentUUID": "4e3d586e-74da-455c-a7c2-d5c46a65a1b6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "dfacf04e-7d78-4619-bc1b-0641f1363310",
+            "888a727a-af91-4f61-9b24-d32070de605e",
+            "703c41a0-16c0-4177-aafb-83c0114f771d",
+            "3cf90e20-7734-49f7-bcf8-c0208bde975c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1758,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.6.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
